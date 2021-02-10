@@ -1,19 +1,19 @@
 package entity;
 
+import enums.Discount;
 import enums.Sex;
 
-public class Customer {
+public abstract class Client {
     private Sex sex;
     private String name;
-    private boolean isRegularCustomer;
+    private Discount discount;
     private Order order;
-    private Coach coach;
     private Appointment appointment;
 
-    public Customer(Sex sex, String name, Boolean isRegularCustomer) {
+    public Client(Sex sex, String name, Discount discount) {
         this.sex = sex;
         this.name = name;
-        this.isRegularCustomer = isRegularCustomer;
+        this.discount = discount;
     }
 
     public Sex getSex() {
@@ -32,28 +32,12 @@ public class Customer {
         this.name = name;
     }
 
-    public Boolean isRegularCustomer() {
-        return isRegularCustomer;
-    }
-
-    public void setRegularCustomer(Boolean regularCustomer) {
-        isRegularCustomer = regularCustomer;
-    }
-
     public Order getOrder() {
         return order;
     }
 
-    public void makeOrder(Integer numberOfWorkouts) {
-        order = new Order(this, numberOfWorkouts);
-    }
-
-    public Coach getCoach() {
-        return coach;
-    }
-
-    public void setCoach(Coach coach) {
-        this.coach = coach;
+    public void makeOrder(Integer numberOfWorkouts, Coach coach) {
+        order = new Order(this, numberOfWorkouts, coach);
     }
 
     public Appointment getAppointment() {
@@ -66,5 +50,13 @@ public class Customer {
 
     public void pay(boolean isPaid) {
         this.order.setPaid(isPaid);
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
     }
 }
