@@ -1,9 +1,5 @@
 package entity;
 
-import enums.Discount;
-
-import java.util.Optional;
-
 public class Order {
     private static final Integer WORKOUT_PRICE = 5;
     private Integer numberOfWorkouts;
@@ -18,14 +14,7 @@ public class Order {
     }
 
     private double calculateTotalPrice(Client client, Integer numberOfWorkouts) {
-        return numberOfWorkouts * WORKOUT_PRICE * getDiscountValue(client);
-    }
-
-    private double getDiscountValue(Client client) {
-        return Optional.ofNullable(client)
-                .map(Client::getDiscount)
-                .map(Discount::getValue)
-                .orElseThrow(RuntimeException::new);
+        return numberOfWorkouts * WORKOUT_PRICE * client.getDiscount();
     }
 
     public Integer getNumberOfWorkouts() {

@@ -3,7 +3,7 @@ package entity;
 import enums.Discount;
 import enums.Sex;
 
-public abstract class Client {
+public class Client {
     private Sex sex;
     private String name;
     private Discount discount;
@@ -52,8 +52,8 @@ public abstract class Client {
         this.order.setPaid(isPaid);
     }
 
-    public Discount getDiscount() {
-        return discount;
+    public double getDiscount() {
+        return discount.getValue();
     }
 
     public void setDiscount(Discount discount) {
